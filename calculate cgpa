@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CGPA Calculator</title>
+</head>
+<body>
+
+  <h2>CGPA Calculator</h2>
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter your name"><br>
+
+  <label for="registerNumber">Register Number:</label>
+  <input type="text" id="registerNumber" placeholder="Enter your register number"><br>
+
+  <label for="subject1">Subject 1 Mark:</label>
+  <input type="number" id="subject1" placeholder="Enter mark for subject 1" min="0" max="100"><br>
+
+  <label for="subject2">Subject 2 Mark:</label>
+  <input type="number" id="subject2" placeholder="Enter mark for subject 2" min="0" max="100"><br>
+
+  <button onclick="calculateCGPA()">Calculate CGPA</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculateCGPA() {
+      // Get values from input fields
+      var name = document.getElementById("name").value;
+      var registerNumber = document.getElementById("registerNumber").value;
+      var subject1Mark = parseFloat(document.getElementById("subject1").value);
+      var subject2Mark = parseFloat(document.getElementById("subject2").value);
+
+      // Check if all fields are filled
+      if (name === "" || registerNumber === "" || isNaN(subject1Mark) || isNaN(subject2Mark)) {
+        alert("Please fill in all fields with valid values");
+        return;
+      }
+
+      // Calculate CGPA based on a simple grading scale
+      var totalMarks = subject1Mark + subject2Mark;
+      var cgpa = totalMarks / 20;
+
+      // Display the result
+      document.getElementById("result").innerHTML = `
+        <strong>Name:</strong> ${name}<br>
+        <strong>Register Number:</strong> ${registerNumber}<br>
+        <strong>CGPA:</strong> ${cgpa.toFixed(2)}
+      `;
+    }
+  </script>
+
+</body>
+</html>
